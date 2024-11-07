@@ -1,4 +1,4 @@
-name: push-workflow1
+name: push-workflow12
 on: push # 이벤트 종류
 
 jobs:
