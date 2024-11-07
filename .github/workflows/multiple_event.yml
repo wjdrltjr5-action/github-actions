@@ -8,7 +8,7 @@ on: # 여러개의 이벤트 조건 작성
 jobs:
     multiple_event:
         runs-on: ubuntu-latest
-         steps:
+        steps:
             - name: step1 # name은 생략 가능
               run: echo "hello world"
             - name: step2
