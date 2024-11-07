@@ -1,0 +1,30 @@
+#needs job의 실행 순서 설정 job 여러개 구성할때
+name: needs
+on: push
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo
+              run: echo "job1 done"
+    job2:
+        runs-on: ubuntu-latest
+        needs: [job1] #job1 성공후 실행
+        steps:
+            - name: echo
+              run: echo "job2 done"
+    job3:
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo #exit 1 -> job 강제 실패
+              run: |
+                  echo "job3 failed"
+                  exit 1
+    job4:
+        runs-on: ubuntu-latest
+        needs: [job3] #3이 실패할꺼니까 이것도 당연히 실행 안됨ㅋ
+        steps:
+            - name: echo
+              run: |
+                  echo "job4 done"
