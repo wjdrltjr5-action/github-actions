@@ -1,6 +1,7 @@
 name: pull-request-workflow
-on: pull_request
-
+on:
+    pull_request: # on pull_request 로만 작성하면 opened, synchronize, reopened 세타입 다 작동 이벤트를 좀더 세밀하게 지어하기 위해 activity type 을 명시해야
+        types: [opened] # activity type
 jobs:
     pull-request-job:
         runs-on: ubuntu-latest
