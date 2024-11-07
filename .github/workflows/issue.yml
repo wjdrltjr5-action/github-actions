@@ -1,0 +1,14 @@
+name: issues-workflow
+on:
+    issues: # on issues 로만 작성하면 pull request 처럼 타입마다 작동 이벤트를 좀더 세밀하게 지어하기 위해 activity type 을 명시해야
+        types: [opened] # activity type
+jobs:
+    issues-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: step1 # name은 생략 가능
+              run: echo "hello world"
+            - name: step2
+              run: | # | 멀티라인 커맨드 사용 하기위해
+                  echo "hello world"
+                  echo "github action"
