@@ -1,6 +1,6 @@
 # default branch 에서만 동작 이슈뿐 아니라 pull-request 코멘드도 동작
 name: issue-comment-workflow
-on: issue-comment
+on: issues-comment
 
 jobs:
     pr-comment:
