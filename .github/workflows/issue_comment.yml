@@ -1,0 +1,18 @@
+# default branch 에서만 동작 이슈뿐 아니라 pull-request 코멘드도 동작
+name: issue-comment-workflow
+on: issue-comment
+
+jobs:
+    pr-comment:
+        if: ${{ github.event.issue.pull_request }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: pr comment
+              run: echo ${{ github.event.issue.pull_request }}
+
+    issue-comment:
+        if: ${{ github.event.issue.pull_request }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: issue comment
+              run: echo ${{ github.event.issue.pull_request }}
