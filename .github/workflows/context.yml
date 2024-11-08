@@ -1,0 +1,9 @@
+name: context # context 워크플로우를 실행하는 환경에 대한 정보 더 유연한 워크플로우를 만들기 위해 dev에 push 받으면 workflow에서 1번job main에 push시 2번job 이런식으로
+on: workflow_dispatch
+
+jobs:
+    context:
+        runs-on: ubuntu-latest
+        steps:
+            - name: github context
+              run: echo '${{ toJson(github)}}' # object 객체 json으로 변환

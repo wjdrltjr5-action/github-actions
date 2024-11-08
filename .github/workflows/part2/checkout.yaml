@@ -1,14 +1,14 @@
-name: checkout
+name: checkout # 깃헙 레포지토리를 가져와 작업을 수행 마켓플레이스에 정의된 공식 액션
 on: workflow_dispatch
 
 jobs:
-    no-checkout:
+    no-checkout: #실패하는 테스트 왜? checkout action 을 하지 않아 레포지토리를 가져오지 않음
         runs-on: ubuntu-latest
         steps:
             - name: check file list
               run: cat README.md
 
-    checkout:
+    checkout: # check out으로 repository를 가져옴
         runs-on: ubuntu-latest
         steps:
             - name: use checkout action
