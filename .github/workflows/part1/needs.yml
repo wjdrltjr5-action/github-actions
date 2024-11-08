@@ -23,8 +23,8 @@ jobs:
                   exit 1
     job4:
         runs-on: ubuntu-latest
-        needs: [job3] #3이 실패할꺼니까 이것도 당연히 실행 안됨ㅋ
-        steps:
+        needs: [job3] #3이 실패할꺼니까 이것도 당연히 실행 안됨ㅋ  # 이럴때 사용하는게 re-run 과거에 실행된 워크플로우를 재실행, 성공 실패 여부와 상관없이 재실행 가능, 트리거된 그 시점(수정 반영 x)을 재실행
+        steps: # 수정 파일 반영할꺼면 수정한 파일이 포함된 후 워크플로우를 실행해야
             - name: echo
               run: |
                   echo "job4 done"
