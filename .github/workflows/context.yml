@@ -6,4 +6,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: github context
-              run: echo '${{ toJson(github)}}' # object 객체 json으로 변환
+              run: echo '${{ toJson(github)}}' # object 객체 json으로 변환   가지고 있는 정보를 보여줌
+            - name: check github context
+              run: |
+                  echo ${{ github.repository }}
+                  echo ${{ github.event_name}}
