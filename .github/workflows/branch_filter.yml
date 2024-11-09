@@ -1,0 +1,11 @@
+name: branch-filter
+on:
+    push:
+        branches: ["dev"] #필터 사용
+
+jobs:
+    branch-filter:
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo
+              run: echo hello
