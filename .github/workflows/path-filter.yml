@@ -1,0 +1,13 @@
+# 특정 경로 파일이 변경될때 실행 ex my-app이라는 디렉토리 내에 파일이 업데이트 될때만 실행한다던가
+name: path-filter
+on:
+    push:
+        paths:
+            - ".github/workflows/part1/*"
+
+jobs:
+    path-filter:
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo hello
+              run: echo hello
