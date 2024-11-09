@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: checkout
-              run: actions/checkout@v4
+              uses: actions/checkout@v4
             - name: setup-node
               uses: actions/setup-node@v3 # 18버전의 노드 인스톨
               with:
