@@ -1,7 +1,7 @@
 name: branch-filter
 on:
     push:
-        branches: ["dev"] #필터 사용
+        branches: ["dev-test"] #필터 사용
 
 jobs:
     branch-filter:
