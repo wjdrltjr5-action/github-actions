@@ -5,7 +5,7 @@ on: push
 jobs:
     timeout:
         runs-on: ubuntu-latest
-        timeout-minutes: 1
+        timeout-minutes: 1 #전체
         steps:
             - name: loop
               run: |
@@ -15,5 +15,6 @@ jobs:
                     count=$(( count+1 ))
                     sleep 1
                   done
+              timeout-minutes: 1 # setp 단계 time out
             - name: echo
               run: echo hello
