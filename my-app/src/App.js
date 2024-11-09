@@ -17,7 +17,7 @@ function App() {
 				>
 					Learn GithubAction cicd
 				</a>
-				cache test
+				cache test2
 			</header>
 		</div>
 	);
