@@ -1,0 +1,12 @@
+# 특정 태그에서 실행 ex) v1.0.0  push 에서만 가능
+name: tag-filter
+on:
+    push:
+        tags:
+            - "v[0-9]+.[0-9]+.[0-9]"
+jobs:
+    tag-filter:
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo
+              run: echo hello
