@@ -1,0 +1,22 @@
+# 특정 조건이 충족될때 실행되도록 하는 데 사용
+# filter는 workflow 트리거를 세밀하게 제어 ex push branchfilter
+# ifcondition은 workflow가 트리거된 이후 job과 step 세밀하게 제어
+name: if-1
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        if: github.event_name == 'push'
+        steps:
+            - name: get event name
+              run: echo ${{ github.event_name }}
+
+    job2:
+        runs-on: ubuntu-latest
+        if: github.event_name != 'push'
+        steps:
+            - name: get event name
+              run: echo ${{ github.event_name }}

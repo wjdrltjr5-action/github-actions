@@ -9,7 +9,7 @@ jobs:
     get-martix:
         strategy:
             matrix:
-                os: [windows-latest, ubuntu-latest]
+                os: [windows-latest, ubuntu-latest] # 가능한 조합으로 모두 실행
                 version: [12, 14]
         runs-on: ${{ matrix.os }}
         steps:
