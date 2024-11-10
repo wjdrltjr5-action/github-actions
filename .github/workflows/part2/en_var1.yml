@@ -1,7 +1,7 @@
 # step이나 job에서 사용할 수 있는 환경 변수 , key-value 형태로 데이터 저장
 # output과의 차이는 동일한 job에서만 데이터 공유 가능
 # env 사용 or 미리 정의
-name: environment1
+name: environment_var
 on: push
 
 env:
