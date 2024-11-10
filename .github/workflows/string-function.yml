@@ -1,0 +1,29 @@
+# 문자열 처리 함수
+# startWith, endWith, contatins(이친구는)
+name: string-function
+on: push
+
+jobs:
+    string-function:
+        runs-on: ubuntu-latest
+        steps:
+            - name: startWith
+              if: startsWith('github actions','git')
+              run: echo "git"
+            - name: startWith
+              if: startsWith('github actions','test')
+              run: echo "test"
+
+            - name: endWith
+              if: endsWith('github actions','ions')
+              run: echo "ions"
+            - name: endsWith
+              if: startsWith('github actions','test')
+              run: echo "gtestit"
+
+            - name: contains
+              if: startsWith('github actions','act')
+              run: echo "contains act"
+            - name: contains
+              if: startsWith('github actions','git')
+              run: echo "contains git"
