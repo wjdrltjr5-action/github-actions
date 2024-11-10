@@ -1,0 +1,19 @@
+# 변수 기반으로 여러 job 을 실행하는 기능
+# matrix를 사용해서 하나의 잡을 구성하면, 여러 개의 잡을 실행하도록 할 수 있음
+# 예시 os 별로 사용 하기 window러너, linux러너,  max러너
+# 하나의 잡을 구성해서 같은 코드베이스에서 각 버전별로 테스트 구성
+name: matrix
+on: push
+
+jobs:
+    get-martix:
+        strategy:
+            matrix:
+                os: [windows-latest, ubuntu-latest]
+                version: [12, 14]
+        runs-on: ${{ matrix.os }}
+        steps:
+            - name: check matrix
+              run: |
+                  echo ${{ matrix.os }}
+                  echo ${{ matrix.version }}
