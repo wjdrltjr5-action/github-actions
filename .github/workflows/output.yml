@@ -1,0 +1,15 @@
+# 한 job에서 생성한 데이터를 동일한 job의 step 또는 다른 job과 데이터 공유  단순한 값 전달할 때 사용(파일 공유는 artifact사용) key-value 형식
+name: output
+on: push
+
+jobs:
+    create_output:
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo output
+              id: check-output
+              run: |
+                  echo "test=hello" >> $GITHUB_OUTPUT
+            - name: check output
+              run: |
+                  echo ${{ steps.check-output.outputs.test}}
