@@ -1,0 +1,10 @@
+# 미리정의한 환경변수 사용하기 워크 플로우 밖에서 정의
+name: environment2
+on: push
+
+jobs:
+    get-var:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get var
+              run: echo ${{ vars.level }}
