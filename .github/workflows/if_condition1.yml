@@ -8,15 +8,25 @@ on:
 
 jobs:
     job1:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-latest #job level
         if: github.event_name == 'push'
         steps:
             - name: get event name
               run: echo ${{ github.event_name }}
 
     job2:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-latest #job level
         if: github.event_name != 'push'
         steps:
             - name: get event name
               run: echo ${{ github.event_name }}
+
+    job3:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get event name
+              if: github.event_name == 'push'
+              run: echo "PUSH"
+            - name: get event name
+              if: github.event_name != 'push'
+              run: echo "NOT PUSH"
