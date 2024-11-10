@@ -1,0 +1,20 @@
+# 특정 job과 step을 강제로 실행 하는 if always()
+name: if-2
+on: push
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: exit 1
+              run: exit 1
+            - name: echo
+              run: echo hello
+
+    job2:
+        needs: [job1]
+        if: always()
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo
+              run: echo hello
