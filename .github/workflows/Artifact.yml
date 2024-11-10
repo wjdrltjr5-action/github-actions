@@ -1,0 +1,26 @@
+name: artifact # 동일한 워크플로 내에서 job 사이에 데이터 공유 워크 플로우가 종료된 후에도, 데이터 유지 다운로드 가능 공식 액션 upload, download
+on: push
+
+jobs:
+    upload-artifact:
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo
+              run: echo hello-world > hello.txt
+            - name: upload artifact
+              uses: actions/upload-artifact@v3
+              with:
+                  name: artifact-test
+                  path: ./hello.txt
+
+    download-artifact:
+        runs-on: ubuntu-latest
+        needs: [upload-artifact]
+        steps:
+            - name: download artifact
+              uses: actions/download-artifact@v3
+              with:
+                  name: artifact-test
+                  path: ./
+            - name: check
+              run: cat hello.txt
