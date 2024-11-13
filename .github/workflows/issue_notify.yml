@@ -1,0 +1,31 @@
+# 이슈가 생성될 때 실행
+# 특정 키워드가 포함되면 슬랙으로 공유
+# 키워드는 변동사항 생길 수 있음 (추가 , 삭제 등)
+# issue event => types: [opend]
+name: issue-notity
+on:
+    issues:
+        types: [opened]
+
+jobs:
+    get-keyworld:
+        runs-on: ubuntu-latest
+        outputs:
+            level: ${{ steps.get-keyword.outputs.level }}
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+            - name: get keyword
+              id: get-keyword
+              run: |
+                  echo level=Undefined >> $GITHUB_OUTPUT
+
+                  keywords=$(cat keyword-list.txt)
+                  for keyword in $keywords; do
+                   if [[ "${{ github.event.issue.title }}" =~ "$keyword" ]]; then
+                    echo level=$keyword >> $GITHUB_OUTPUT
+                  fi
+                  done
+            - name: get output
+              run: |
+                  echo ${{ steps.get-keyword.outputs.level }}
