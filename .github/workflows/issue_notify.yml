@@ -29,3 +29,31 @@ jobs:
             - name: get output
               run: |
                   echo ${{ steps.get-keyword.outputs.level }}
+    slack:
+        needs: [get-keyworld]
+        if: needs.get-keyworld.outputs.level != 'Undefined'
+        runs-on: ubuntu-latest
+        environment: ${{ needs.get-keyworld.outputs.level }} # critical or normal
+        steps:
+            - name: slack
+              uses: slackapi/slack-github-action@v1.24.0
+              with:
+                  payload: |
+                      {
+                      "attachments" : [
+                          {
+                            "pretext" : "issue alert message",
+                            "color" : "28a745",
+                            "fields" : [
+                                {
+                                  "title" : "Level : ${{ needs.get-keyworld.outputs.level }} ",  
+                                  "short" : true,
+                                  "value" : "issue url : ${{ github.event.issue.html_url }}"                              
+                                }
+                              ]
+                          }
+                        ]
+                      }
+        env:
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL}}
+            SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
