@@ -28,4 +28,4 @@ jobs:
                   echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} | gh auth login --with-token
             - name: create-repo
               run: | #repo 생성
-                  gh repo create wjdrltjr-action/${{ inputs.prefix }}-${{ inputs.name }} --public --add-readme
+                  gh repo create wjdrltjr5-action/${{ inputs.prefix }}-${{ inputs.name }} --public --add-readme
