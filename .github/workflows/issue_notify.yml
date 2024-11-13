@@ -36,7 +36,8 @@ jobs:
         #environment: ${{ needs.get-keyworld.outputs.level }} # critical or normal
         strategy:
             matrix:
-                environment: ${{ needs.get-keyworld.outputs.level }} # critical or normal  # 매트릭스 사용시 결과는 다르지 않지만  action 타입의 시각적 정보 제공
+                environment: ["${{ needs.get-keyworld.outputs.level }}"] # critical or normal  # 매트릭스 사용시 결과는 다르지 않지만  action 타입의 시각적 정보 제공
+        environment: ${{ matrix.environment }}
         steps:
             - name: slack
               uses: slackapi/slack-github-action@v1.24.0
