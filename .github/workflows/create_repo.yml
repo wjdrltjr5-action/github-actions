@@ -27,5 +27,29 @@ jobs:
               run: | #github 권한 가져오기
                   echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} | gh auth login --with-token
             - name: create-repo
+              id: create-repo # output 만들기 위한 id
               run: | #repo 생성
                   gh repo create wjdrltjr5-action/${{ inputs.prefix }}-${{ inputs.name }} --public --add-readme
+            - name: slack
+              if: always()
+              uses: slackapi/slack-github-action@v1.24.0
+              with: #위에서 만든 id를 기반으로 title에 2번째 step 결과값 사용
+                  payload: |
+                      {
+                        "attachments" : [
+                          {
+                            "pretext" : create repo result",
+                            "color" : "28a745",
+                            "fields" : [
+                              {
+                                "title" : "create repo result ${{ steps.create-repo.outcome }}", 
+                                "short" : true,                          
+                                "value" : "${{ inputs.prefix }}-${{ inputs.name }}"  
+                              }
+                            ]
+                          }
+                        ]
+                      }
+              env:
+                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+                  SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
