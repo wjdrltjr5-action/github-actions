@@ -1,0 +1,31 @@
+#  깃헙 레포 생성 자동화
+# 정해진 prefix 사용하는 레포지토리 이름
+# 결과에 따른 슬랙 알림 보내기
+name: create-repo
+on:
+    workflow_dispatch:
+        inputs:
+            prefix:
+                description: "set repo prefix"
+                required: true
+                default: "service"
+                type: choice
+                options:
+                    - example
+                    - service
+            name:
+                description: "set repo name"
+                required: true
+                default: "github-actions"
+                type: string
+
+jobs:
+    create-repo-automation:
+        runs-on: ubuntu-latest
+        steps:
+            - name: gh auth login
+              run: | #github 권한 가져오기
+                  echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} | gh auth login --with-token
+            - name: create-repo
+              run: | #repo 생성
+                  gh repo create wjdrltjr-action/${{ inputs.prefix }}-${{ inputs.name }} --public --add-readme
